@@ -8,6 +8,7 @@ const createTeacher = async (body) => {
   const teacher = await model.teacher.create(body);
   return teacher;
 };
+
 const updateTeacher = async () => {};
 const deleteTeacher = async () => {};
 module.exports = { getTeacher, createTeacher, updateTeacher, deleteTeacher };

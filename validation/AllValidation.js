@@ -14,6 +14,7 @@ const teacher = Joi.object().keys({
 const student = Joi.object().keys({
   StudentId: Joi.number().optional(),
   Major: Joi.string().required(),
+  userUserId:Joi.number().required(),
 });
 
 const course = Joi.object().keys({
@@ -22,4 +23,9 @@ const course = Joi.object().keys({
   Description: Joi.string().required(),
 });
 
-module.exports = { user, course, teacher, student };
+const courseStudent = Joi.object().keys({
+  studentID: Joi.number().required(),
+  courseId: Joi.number().required(),
+});
+
+module.exports = { user, course, teacher, student , courseStudent };
