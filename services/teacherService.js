@@ -11,4 +11,34 @@ const createTeacher = async (body) => {
 
 const updateTeacher = async () => {};
 const deleteTeacher = async () => {};
-module.exports = { getTeacher, createTeacher, updateTeacher, deleteTeacher };
+const teacherAssigned = async (value) => {
+  console.log("Assigend Id for course", value);
+  const Ass = await model.Teacher_course.create(value);
+  return Ass;
+};
+const getAssigned = async (id) => {
+  console.log(id);
+  const Ass = await model.teacher.findByPk(id, {
+    include: [
+      {
+        model: model.teacher,
+        model: model.course,
+        through: model.Teacher_course,
+      },
+    ],
+  });
+  if (Ass) {
+    return Ass;
+  } else {
+    console.log("No course enroled by this student");
+  }
+};
+
+module.exports = {
+  getTeacher,
+  createTeacher,
+  updateTeacher,
+  deleteTeacher,
+  teacherAssigned,
+  getAssigned,
+};
